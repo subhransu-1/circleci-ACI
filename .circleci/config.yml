@@ -10,8 +10,10 @@ jobs:
     steps:
       - checkout
       - azure-cli/install
-      - azure-cli/login-with-user:
-          alternate-tenant: true
+      - azure-cli/login-with-service-principal:
+      - run:
+          command: az resource list
+          name List resources of tenant stored as 'AZURE_SP_TENANT' env var
       - terraform/install:
           terraform_version: '1.2.3'
       - terraform/validate:
